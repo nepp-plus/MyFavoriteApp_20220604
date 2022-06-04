@@ -3,6 +3,8 @@ package com.neppplus.myfavoriteapp_20220604
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,9 +13,17 @@ class SplashActivity : AppCompatActivity() {
 
 //        로딩화면에서 => (2.5초 기다리고) => 메인화면으로 이동 + 로딩화면 종료
 
-        val myIntent = Intent(this, MainActivity::class.java)
-        startActivity(myIntent)
-        finish()
+        val myHandler = Handler( Looper.getMainLooper() )
+
+        myHandler.postDelayed( {
+
+            val myIntent = Intent(this, MainActivity::class.java)
+            startActivity(myIntent)
+            finish()
+
+        },  2500 )
+
+
 
     }
 }
